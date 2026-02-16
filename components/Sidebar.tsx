@@ -74,6 +74,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, role, onOp
               {canSee('collections') && <NavItem id="collections" label="Cobranza" icon={<CollectionsIcon />} activePage={activePage} onClick={setActivePage} />}
               {canSee('claims') && <NavItem id="claims" label="Siniestros" icon={<ClaimsIcon />} activePage={activePage} onClick={setActivePage} />}
               {canSee('commissions') && <NavItem id="commissions" label="Comisiones" icon={<CommissionsIcon />} activePage={activePage} onClick={setActivePage} />}
+              {canSee('renewals') && <NavItem id="renewals" label="Renovaciones" icon={<ShieldCheckIcon />} activePage={activePage} onClick={setActivePage} />}
             </NavSection>
 
             <NavSection title="Estrategia">

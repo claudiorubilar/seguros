@@ -16,7 +16,7 @@ interface ProspectDetailModalProps {
     addQuote: (newQuoteData: Omit<Quote, 'id' | 'quoteNumber' | 'creationDate' | 'status'>) => void;
 }
 
-type Tab = 'details' | 'tasks' | 'quotes' | 'history';
+type Tab = 'details' | 'tasks' | 'quotes' | 'history' | 'compliance';
 
 const formatDate = (date: Date, includeTime = false) => {
     if (!date) return 'N/A';
@@ -102,6 +102,52 @@ const ProspectDetailModal: React.FC<ProspectDetailModalProps> = ({ isOpen, onClo
                         ))}
                     </ul>
                 );
+        case 'compliance':
+            return (
+                <div className="space-y-6">
+                    <div className="grid grid-cols-2 gap-6">
+                        {/* Nivel de Riesgo con código de colores según documento */}
+                        <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <p className="text-[10px] font-bold text-slate-500 uppercase mb-1">Nivel de Riesgo KYC</p>
+                            <span className={`px-2 py-1 rounded text-xs font-black uppercase ${
+                                prospect.kycLevel === 'Alto' ? 'bg-red-100 text-red-700' : 
+                                prospect.kycLevel === 'Medio' ? 'bg-amber-100 text-amber-700' : 'bg-green-100 text-green-700'
+                            }`}>
+                                {prospect.kycLevel || 'Bajo'}
+                            </span>
+                        </div>
+
+                        {/* Indicador PEP [cite: 993] */}
+                        <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex justify-between items-center">
+                            <div>
+                                <p className="text-[10px] font-bold text-slate-500 uppercase">Persona Expuesta Políticamente (PEP)</p>
+                                <p className="text-xs text-slate-700 mt-1">{prospect.isPEP ? 'SÍ' : 'NO'}</p>
+                            </div>
+                            <div className={`w-3 h-3 rounded-full ${prospect.isPEP ? 'bg-amber-500' : 'bg-slate-300'}`}></div>
+                        </div>
+                    </div>
+
+                    {/* Consentimiento de Datos GDPR [cite: 967, 1000] */}
+                    <div className="p-4 rounded-xl border border-blue-100 bg-blue-50/50">
+                        <div className="flex items-center gap-3">
+                            <input 
+                                type="checkbox" 
+                                checked={prospect.dataConsent} 
+                                readOnly 
+                                className="w-4 h-4 text-blue-600 rounded border-gray-300"
+                            />
+                            <div>
+                                <p className="text-sm font-bold text-slate-800">Consentimiento de Privacidad (GDPR/AML)</p>
+                                <p className="text-[10px] text-slate-500">
+                                    {prospect.dataConsent 
+                                        ? `Aceptado el: ${formatDate(prospect.consentDate || new Date())}` 
+                                        : 'Pendiente de firma'}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
         }
     };
 
@@ -122,6 +168,7 @@ const ProspectDetailModal: React.FC<ProspectDetailModalProps> = ({ isOpen, onClo
                         <TabButton tabId="tasks" label="Tareas" activeTab={activeTab} onClick={setActiveTab} />
                         <TabButton tabId="quotes" label="Cotizaciones" activeTab={activeTab} onClick={setActiveTab} />
                         <TabButton tabId="history" label="Historial" activeTab={activeTab} onClick={setActiveTab} />
+                        <TabButton tabId="compliance" label="Cumplimiento" activeTab={activeTab} onClick={setActiveTab} />
                     </nav>
                 </div>
 
