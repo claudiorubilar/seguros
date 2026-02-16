@@ -1,0 +1,81 @@
+/* 1. IMPORTACIÓN DE FUENTE PREMIUM (Plus Jakarta Sans) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* 2. CONFIGURACIÓN GLOBAL DE LEGIBILIDAD */
+:root {
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  background-color: #f8fafc;
+  color: #1e293b;
+  /* Subimos el tamaño base para que el 1rem sea más grande */
+  font-size: 15px; 
+  line-height: 1.6;
+}
+
+/* 3. ESTILO DE TABLAS (Estándar Pro) */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Zebra Striping (Fila por medio) */
+tbody tr:nth-child(even) {
+  background-color: rgba(241, 245, 249, 0.5); /* Un gris azulado muy tenue */
+}
+
+/* Resalte al pasar el mouse (Hover) */
+tbody tr:hover {
+  background-color: rgba(219, 234, 254, 0.6) !important; /* Azul suave */
+  transition: all 0.2s ease;
+}
+
+/* Bordes redondeados sutiles en las esquinas de la tabla */
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+/* 4. SCROLLBAR FINO Y ELEGANTE */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 5. CLASES DE ESTADO (Para que funcionen en todo el aplicativo) */
+.status-pill {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.status-pagada { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+.status-vencida { background-color: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+.status-mora { background-color: #fef3c7; color: #b45309; border-color: #fde68a; }
+.status-vigente { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+.status-cancelada { background-color: #f1f5f9; color: #475569; border-color: #e2e8f0; }

@@ -1,0 +1,5 @@
+{
+  "name": "Insurance Brokerage Command Center",
+  "description": "A comprehensive web application for insurance brokerage firms to manage agents, track sales performance from various insurers, and gain actionable insights through advanced reporting, configurable alerts, and AI-powered analytics.",
+  "requestFramePermissions": []
+}
