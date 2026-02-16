@@ -23,13 +23,15 @@ import SaasAccounting from './pages/SaasAccounting';
 import Plans from './pages/Plans';
 import SecurityAudit from './pages/SecurityAudit';
 import AIAssistantChat from './components/AIAssistantChat';
+import Renewals from './pages/Renewals';
 
 export type Page = 
   | 'dashboard' | 'policies' | 'agents' | 'clients' 
   | 'collections' | 'users' | 'claims' | 'quotes' 
   | 'sales-workflow' | 'tasks' | 'reports' | 'commissions' 
   | 'agent-portal' | 'investments' | 'incentives' | 'security-audit'
-  | 'saas-dashboard' | 'brokerages' | 'plans' | 'saas-accounting';
+  | 'saas-dashboard' | 'brokerages' | 'plans' | 'saas-accounting'
+  | 'renewals';
 
 const pageTitles: Record<string, string> = {
   dashboard: 'Dashboard de Gestión', policies: 'Gestión de Pólizas', agents: 'Rendimiento de Agentes',
@@ -39,6 +41,7 @@ const pageTitles: Record<string, string> = {
   'agent-portal': 'Portal de Agente', investments: 'Gestión de Inversiones AI', incentives: 'Incentivos y Metas',
   'security-audit': 'Auditoría de Seguridad CMF', 'saas-dashboard': 'SaaS Monitor | Innosoft HQ',
   'brokerages': 'Control de Corredoras', 'plans': 'Gestión de Planes', 'saas-accounting': 'Contabilidad SaaS',
+  'renewals': 'Gestión de Renovaciones y Retención',
 };
 
 const App: React.FC = () => {
@@ -72,6 +75,7 @@ const App: React.FC = () => {
     switch (activePage) {
       case 'dashboard': return <Dashboard {...commonProps} />;
       case 'policies': return <Policies {...commonProps} />;
+      case 'renewals': return <Renewals />;
       case 'agents': return <Agents />;
       case 'clients': return <Clients {...commonProps} />;
       case 'collections': return <Collections {...commonProps} />;
